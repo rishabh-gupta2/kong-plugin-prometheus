@@ -75,6 +75,11 @@ local function init()
   end
 
   metrics.memory_stats = memory_stats
+  
+  metrics.timer_stats = prometheus:gauge("nginx_current_timers",
+                                             "Current nginx timers in each state",
+                                             {"state"})
+  
 
   -- per service/route
   if kong_subsystem == "http" then
